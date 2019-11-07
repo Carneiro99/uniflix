@@ -36,11 +36,8 @@ public class FilmesController {
             List<Filme> filmes = new ArrayList<>();
             for (int i = 0; i < result.length(); ++i) {
                 JSONObject movieJson = result.getJSONObject(i);
-                Filme filme = new Filme();
-                filme.setTitulo(movieJson.getString("title"));
-                filme.setSinopse(movieJson.getString("overview"));
-                filme.setAdulto(movieJson.getBoolean("adult"));
-                filme.setNota(movieJson.getDouble("vote_average"));
+                FilmeAdapter filmeAdapter = new FilmeAdapter();
+                Filme filme = filmeAdapter.adapter(movieJson);
                 filmes.add(filme);
             }
             return Response.ok(filmes).build();
